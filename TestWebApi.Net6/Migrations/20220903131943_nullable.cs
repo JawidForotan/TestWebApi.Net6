@@ -5,7 +5,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace TestWebApi.Net6.Migrations
 {
-    public partial class finalMigration : Migration
+    public partial class nullable : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

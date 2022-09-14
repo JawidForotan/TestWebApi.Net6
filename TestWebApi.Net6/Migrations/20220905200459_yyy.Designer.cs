@@ -12,8 +12,8 @@ using TestWebApi.Net6.Data;
 namespace TestWebApi.Net6.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220902105151_finalMigration")]
-    partial class finalMigration
+    [Migration("20220905200459_yyy")]
+    partial class yyy
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -119,10 +119,10 @@ namespace TestWebApi.Net6.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("CategoryId")
+                    b.Property<int?>("CategoryId")
                         .HasColumnType("int");
 
-                    b.Property<int>("ProductId")
+                    b.Property<int?>("ProductId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -149,15 +149,11 @@ namespace TestWebApi.Net6.Migrations
                 {
                     b.HasOne("TestWebApi.Net6.Models.Category", "Category")
                         .WithMany("ProductCategories")
-                        .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("CategoryId");
 
                     b.HasOne("TestWebApi.Net6.Models.Product", "Product")
                         .WithMany("ProductCategories")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ProductId");
 
                     b.Navigation("Category");
 
