@@ -22,8 +22,46 @@ namespace TestWebApi.Net6.Controllers
 
         }
 
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Product>> GetOne(int id)
+        {
+            var entity = await _IproductService.getOneProduct(id);
+            if (entity == null)
+            {
+                return NotFound();
+            }
+            return Ok(entity);
+        }
+
         [HttpGet]
-        public IActionResult SayHi()
-            => Ok("Hi");
+        public async Task<ActionResult<List<Product>>> GetAll()
+        {
+            var entity = await _IproductService.getAllProduct();
+            if (entity == null)
+            {
+                return NotFound();
+            }
+            return Ok(entity);
+        }
+
+        [HttpPut]
+        public async Task<ActionResult<Product>> Update(Product product)
+        {
+            await _IproductService.updateProduct(product);
+            return Ok(product);
+        }
+
+        [HttpDelete]
+        public async Task<ActionResult> Delete(int id)
+        {
+            var productToDelete = await _IproductService.getOneProduct(id);
+            if (productToDelete == null)
+            {
+                return NotFound();
+            }
+            await _IproductService.deleteProduct(id);
+            return Ok();
+        }
+
     }
 }

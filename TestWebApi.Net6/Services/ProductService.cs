@@ -16,5 +16,30 @@
             await _applicationDbContext.SaveChangesAsync();
             return product;
         }
+
+        public async Task<List<Product>> getAllProduct()
+        {
+            return await _applicationDbContext.products.ToListAsync();
+        }
+
+        public async Task<Product> getOneProduct(int productId)
+        {
+            var productById = await _applicationDbContext.products.FindAsync(productId);
+            return productById;
+        }
+
+        public async Task<Product> updateProduct(Product product)
+        {
+            _applicationDbContext.products.Update(product);
+            await _applicationDbContext.SaveChangesAsync();
+            return product;
+        }
+
+        public async Task deleteProduct(int productId)
+        {
+            var productTodelete = await _applicationDbContext.products.FindAsync(productId);
+            _applicationDbContext.products.Remove(productTodelete);
+            await _applicationDbContext.SaveChangesAsync();
+        }
     }
 }
