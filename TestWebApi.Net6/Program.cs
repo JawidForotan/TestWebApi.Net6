@@ -15,11 +15,11 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-// Register interfaces and services here
+// Register interfaces, services and  AutoMapper here
 builder.Services.AddAutoMapper(typeof(Program));
 builder.Services.AddScoped<IProductService, ProductService>();
 builder.Services.AddScoped<ICustomerService, CustomerService>();
-// Register AutoMapper
+
 
 
 // Register connection string from appsetting.json

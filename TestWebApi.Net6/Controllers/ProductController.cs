@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+
 namespace TestWebApi.Net6.Controllers
 {
     [Route("api/[controller]")]
@@ -23,9 +24,9 @@ namespace TestWebApi.Net6.Controllers
         }
 
         [HttpGet("{id}")]
-        public async Task<ActionResult<Product>> GetOne(int id)
+        public async Task<ActionResult<ProductDTO>> GetOne(int id)
         {
-            var entity = await _IproductService.getOneProduct(id);
+            var entity = _mapper.Map<ProductDTO>(await _IproductService.getOneProduct(id));
             if (entity == null)
             {
                 return NotFound();
@@ -34,9 +35,9 @@ namespace TestWebApi.Net6.Controllers
         }
 
         [HttpGet]
-        public async Task<ActionResult<List<Product>>> GetAll()
+        public async Task<ActionResult<List<ProductDTO>>> GetAll()
         {
-            var entity = await _IproductService.getAllProduct();
+            var entity = _mapper.Map<List<ProductDTO>>(await _IproductService.getAllProduct());
             if (entity == null)
             {
                 return NotFound();

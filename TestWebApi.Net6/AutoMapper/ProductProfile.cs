@@ -7,7 +7,7 @@ namespace TestWebApi.Net6.AutoMapper
         public ProductProfile()
         {
             CreateMap<Product, ProductDTO>().ReverseMap();
-            //CreateMap<ProductDTO, Product>();
+
         }
 
     }
